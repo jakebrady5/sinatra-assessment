@@ -5,7 +5,7 @@ describe "Model Associations" do
 
     #sequence of assignment seemed overly touchcy, potential for bugs to still exist in relations
 
-    @user = User.create(username: "Leonard", password: "carmelappletini")
+    @user = User.create(username: "Leonard", password: "caramelappletini")
     @ensemble = Ensemble.create(name: "The Orange Peels", city: "Boston", user_id: @user.id)
     @instrument = Instrument.create(name: "trumpet")
     @player = Player.create(name: "Rafael", age: "25", experience: "professional", instrument_id: @instrument.id)
