@@ -1,1 +1,11 @@
 <h2>List of Your Ensembles</h2>
+
+<ul>
+  <% @ensembles.each do |a| %>
+    <% if a.user_id = @user.id %>
+    <li><a href="/ensembles/<%=a.id%>"><%= a.name + ": " + a.city %></a></li>
+    <% end %>
+  <% end %>
+</ul>
+
+<h3><a href="/ensembles/new">Create New Ensemble</a></h3>

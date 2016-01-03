@@ -1,0 +1,13 @@
+<h2><%= @ensemble.name %></h2>
+<h3><%= @ensemble.city %></h3><br><br>
+
+<a href="/players/new">Add Player</a>
+
+<% @players.each do |a| %>
+  <ul><a href="/players/<%=a.id%>"><%=a.name%></a>
+    <li><%=a.instrument%></li>
+    <li><%=a.experience%></li>
+  </ul>
+<% end %>
+
+<a href="/players/new">Add Player</a>

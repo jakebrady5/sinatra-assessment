@@ -27,6 +27,10 @@ class ApplicationController < Sinatra::Base
     def current_user
       User.find(session[:user_id])
     end
+
+    def catch_error
+      @error_message = params[:error]
+    end
   end
 
 end

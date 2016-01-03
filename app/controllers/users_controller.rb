@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   get '/signup' do
-    @error_message = params[:error]
+    catch_error
     if logged_in?
       redirect "/ensembles?error=Please log out before signing up"
     end
@@ -21,7 +21,7 @@ class UsersController < ApplicationController
   end
 
   get '/login' do
-    @error_message = params[:error]
+    catch_error
     if logged_in?
       redirect "/ensembles?error=You are already logged in"
     end
