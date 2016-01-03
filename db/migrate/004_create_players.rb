@@ -5,6 +5,7 @@ class CreatePlayers < ActiveRecord::Migration
       t.string :name
       t.integer :age
       t.string :experience
+      t.integer :instrument_id
     end
   end
 
