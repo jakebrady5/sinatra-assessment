@@ -107,6 +107,7 @@ class EnsemblesController < ApplicationController
           a.destroy
         end
       end
+      redirect '/ensembles'
     else
       redirect '/ensembles?error=This ensemble is not under your management'
     end

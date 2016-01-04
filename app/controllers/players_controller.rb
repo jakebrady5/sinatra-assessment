@@ -44,13 +44,42 @@ class PlayersController < ApplicationController
   end
 
   get '/players/:id/edit' do
+    redirect_if_not_logged_in
     catch_error
+    @player = Player.find_by_id(params[:id])
+    if @player
+      erb :"players/edit"
+    else
+      redirect '/players?error=Player ID not found'
+    end
   end
 
   post '/players/:id' do
+    redirect_if_not_logged_in
+    @player = Player.find_by_id(params[:id])
+    @player.name = params[:name]
+    @player.age = params[:age]
+    @player.experience = params[:experience]
+    @instrument = Instrument.find_by_name(params[:instrument])
+    if !@instrument
+      @instrument = Instrument.create(name: params[:instrument])
+      @instrument.save
+    end
+    @player.instrument_id = @instrument.id
+    @player.save
+    redirect '/players'
   end
 
   get '/players/:id/delete' do
+    redirect_if_not_logged_in
+    @player = Player.find_by_id(params[:id])
+    @eps = EnsemblePlayer.all
+    @eps.each do |a|
+      if a.player_id == @player.id
+        a.destroy
+      end
+    end
+    redirect '/players'
   end
 
 end
