@@ -1,0 +1,9 @@
+<h2>All Players</h2>
+
+<ul>
+  <% @players.each do |a| %>
+    <li><a href="/players/<%=a.id%>"><%= a.name + " - " + a.instrument.name %></a></li>
+  <% end %>
+</ul>
+
+<h3><a href="/players/new">Create New Player</a></h3>

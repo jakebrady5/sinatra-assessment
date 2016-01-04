@@ -1,0 +1,11 @@
+<h2>Player Details</h2>
+
+<ul>
+  <%= @player.name %>
+  <li><%= @player.intrument.name %></li>
+  <li><%= @player.experience %></li>
+  <li><%= @player.age %></li>
+</ul>
+
+<a href="/players/<%=@player.id%>/edit">Edit This Player</a>
+<a href="/players/<%=@player.id%>/delete">Delete This Player</a>
