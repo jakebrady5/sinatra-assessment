@@ -1,0 +1,7 @@
+<h2>Edit <%= @ensemble.name %></h2>
+
+<form action="/ensembles/<%=@ensemble.id%>" method="post">
+  Name: <input type="text" name="name" value="<%=@ensemble.name%>">
+  City: <input type="text" name="city" value="<%=@ensemble.city%>">
+  <button type="submit" value="submit">submit</button>
+</form>

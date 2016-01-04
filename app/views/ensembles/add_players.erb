@@ -1,5 +1,8 @@
 <h2>Add Players To <%= @ensemble.name %></h2>
 
 <form action="/ensembles/<%=@ensemble.id%>/add_to" method="post">
-  
+  <% @players.each do |a| %>
+    <%= a.name %><input id="<%=a.name%>" type="checkbox" name="adding[]" value="<%=a.id%>">
+  <% end %>
+  <button type="submit" value="submit">submit</button>
 </form>

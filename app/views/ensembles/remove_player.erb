@@ -1,0 +1,8 @@
+<h2>Remove Players from <%= @ensemble.name %></h2>
+
+<form action="/ensembles/<%=@ensemble.id%>/remove" method="post">
+  <% @players.each do |a| %>
+    <input type="checkbox" name="removed[]" value="<%=a.id%>"><%= a.name %><br>
+  <% end %>
+  <button type="submit" value="submit">submit</button>
+</form>
