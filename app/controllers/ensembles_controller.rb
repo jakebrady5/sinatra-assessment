@@ -36,6 +36,15 @@ class EnsemblesController < ApplicationController
   end
 
   get '/ensembles/:id/add_to' do
+    redirect_if_not_logged_in
+    @ensemble = Ensemble.find_by_id(params[:id])
+    @players = Player.all
+    @players = @players.drop_while{|a| @ensemble.players.include?(a)}
+    if current_user.id == @ensemble.user_id
+      erb :"ensembles/add_players"
+    else
+      redirect '/ensembles?error=This ensemble is not under your management'
+    end
   end
 
   post '/ensembles/:id/add_to' do
