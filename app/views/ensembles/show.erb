@@ -11,7 +11,7 @@
 <% @players.each do |a| %>
   <ol>
     <li><ul><a href="/players/<%=a.id%>"><%=a.name%></a>
-      <li><%=a.instrument%></li>
+      <li><%=a.instrument.name%></li>
       <li><%=a.age%></li>
       <li><%=a.experience%></li>
     </ul></li>

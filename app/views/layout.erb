@@ -9,13 +9,15 @@
   <nav>
     <% if logged_in? %>
 
-      <a href="/ensembles/new"> Create Ensemble </a>
-      <a href="/logout"> Log Out </a>
+      <div><a href="/ensembles">  My Ensembles  </a></div>
+      <div><a href="/players">  All Players  </a></div>
+      <div><a href="/instruments">  All Instruments  </a></div>
+      <div><a href="/logout">  Log Out  </a></div>
       <p>Welcome, <%=current_user.username %></p>
 
     <% else %>
-      <a href="/signup">Sign Up</a>
-      <a href="/login"> Log In </a>
+      <a href="/signup">  Sign Up  </a>
+      <a href="/login">  Log In  </a>
     <%end %>
 
     </nav>

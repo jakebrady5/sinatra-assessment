@@ -2,7 +2,7 @@
 
 <form action="/ensembles/<%=@ensemble.id%>/add_to" method="post">
   <% @players.each do |a| %>
-    <%= a.name %><input id="<%=a.name%>" type="checkbox" name="adding[]" value="<%=a.id%>">
+    <%= a.name %><input id="<%=a.name%>" type="checkbox" id="<%=a.name%>" name="adding[]" value="<%=a.id%>"><br>
   <% end %>
   <button type="submit" value="submit">submit</button>
 </form>

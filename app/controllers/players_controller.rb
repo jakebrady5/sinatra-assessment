@@ -67,7 +67,7 @@ class PlayersController < ApplicationController
     end
     @player.instrument_id = @instrument.id
     @player.save
-    redirect '/players'
+    redirect "/players/#{@player.id}"
   end
 
   get '/players/:id/delete' do
@@ -79,6 +79,7 @@ class PlayersController < ApplicationController
         a.destroy
       end
     end
+    @player.destroy
     redirect '/players'
   end
 

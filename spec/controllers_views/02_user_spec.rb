@@ -4,7 +4,6 @@ describe "User Session Activity" do
 
   before do
     @user = User.create(username: "Waldo", password: "blendin")
-    @user.save
   end
 
   it "Successful Login takes user to /ensembles" do

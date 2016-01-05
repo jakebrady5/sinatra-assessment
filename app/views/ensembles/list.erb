@@ -2,7 +2,7 @@
 
 <ul>
   <% @ensembles.each do |a| %>
-    <% if a.user_id = @user.id %>
+    <% if a.user_id == @user.id %>
     <li><a href="/ensembles/<%=a.id%>"><%= a.name + ": " + a.city %></a></li>
     <% end %>
   <% end %>
