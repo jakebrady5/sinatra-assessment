@@ -1,19 +1,18 @@
 <h2><%= @ensemble.name %></h2>
 <h3><%= @ensemble.city %></h3><br><br>
 
-<a href="/ensembles/<%=@ensemble.id%>/add_to">Add Existing Players to This Ensemble</a><br>
-<a href="/ensembles/<%=@ensemble.id%>/remove">Remove Players From This Ensemble</a><br>
-<a href="/players/new">Create New Player</a><br>
-<a href="/ensembles/<%=@ensemble.id%>/edit">Edit This Ensemble</a><br>
-<a href="/ensembles/<%=@ensemble.id%>/delete">Delete This Ensemble</a>
-
-
+<ol>
 <% @players.each do |a| %>
-  <ol>
     <li><ul><a href="/players/<%=a.id%>"><%=a.name%></a>
       <li><%=a.instrument.name%></li>
       <li><%=a.age%></li>
       <li><%=a.experience%></li>
     </ul></li>
-  </ol>
 <% end %>
+</ol>
+
+<a href="/ensembles/<%=@ensemble.id%>/add_to">Add Existing Players to This Ensemble</a><br>
+<a href="/ensembles/<%=@ensemble.id%>/remove">Remove Players From This Ensemble</a><br>
+<a href="/players/new">Create New Player</a><br>
+<a href="/ensembles/<%=@ensemble.id%>/edit">Edit This Ensemble</a><br>
+<a href="/ensembles/<%=@ensemble.id%>/delete">Delete This Ensemble</a>
