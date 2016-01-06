@@ -9,6 +9,7 @@ class PlayersController < ApplicationController
 
   get '/players/new' do
     redirect_if_not_logged_in
+    catch_error
     erb :"players/new_player"
   end
 
@@ -18,10 +19,13 @@ class PlayersController < ApplicationController
     if @player
       redirect "/players/#{@player.id}/edit?error=Player with that name already exists"
     end
+    if params[:name] == "" || params[:age] == "" || params[:experience] == "" || params[:instrument] == ""
+      redirect '/players/new?error=Fields cannot be left blank'
+    end
     @player = Player.create(name: params[:name], age: params[:age], experience: params[:experience])
-    @instrument = Instrument.find_by_name(params[:instrument])
+    @instrument = Instrument.find_by_name(params[:instrument].capitalize)
     if !@instrument
-      @instrument = Instrument.create(name: params[:instrument])
+      @instrument = Instrument.create(name: params[:instrument].capitalize)
       @instrument.save
     end
     @player.instrument_id = @instrument.id
@@ -35,6 +39,7 @@ class PlayersController < ApplicationController
 
   get '/players/:id' do
     redirect_if_not_logged_in
+    catch_error
     @player = Player.find_by_id(params[:id])
     if @player
       erb :"players/show"
@@ -57,12 +62,15 @@ class PlayersController < ApplicationController
   post '/players/:id' do
     redirect_if_not_logged_in
     @player = Player.find_by_id(params[:id])
+    if params[:name] == "" || params[:age] == "" || params[:experience] == "" || params[:instrument] == ""
+      redirect '/players/new?error=Fields cannot be left blank'
+    end
     @player.name = params[:name]
     @player.age = params[:age]
     @player.experience = params[:experience]
-    @instrument = Instrument.find_by_name(params[:instrument])
+    @instrument = Instrument.find_by_name(params[:instrument].capitalize)
     if !@instrument
-      @instrument = Instrument.create(name: params[:instrument])
+      @instrument = Instrument.create(name: params[:instrument].capitalize)
       @instrument.save
     end
     @player.instrument_id = @instrument.id

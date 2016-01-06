@@ -1,9 +1,9 @@
 <h2>Edit <%= @player.name %></h2>
 
 <form action="/players/<%=@player.id%>" method="post">
-  Name: <input type="text" name="name" value="<%= @player.name %>">
-  Age: <input type="text" name="age" value="<%= @player.age %>">
-  Experience: <input type="text" name="experience" value="<%= @player.experience%>">
-  Instrument: <input type="text" name="instrument" value="<%= @player.instrument.name %>">
+  Name: <input id="name" type="text" name="name" value="<%= @player.name %>">
+  Age: <input id="age" type="text" name="age" value="<%= @player.age %>">
+  Experience: <input id="experience" type="text" name="experience" value="<%= @player.experience%>">
+  Instrument: <input id="instrument" type="text" name="instrument" value="<%= @player.instrument.name %>">
   <button type="submit" value="submit">submit</button>
 </form>

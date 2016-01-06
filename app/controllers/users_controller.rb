@@ -9,6 +9,9 @@ class UsersController < ApplicationController
   end
 
   post '/signup' do
+    if params[:username] == "" || params[:password] == ""
+      redirect '/signup?error=Fields cannot be left blank'
+    end
     @user = User.find_by_username(params[:username])
     if !@user
       @user = User.create(username: params[:username], password: params[:password])
@@ -29,6 +32,9 @@ class UsersController < ApplicationController
   end
 
   post '/login' do
+    if params[:username] == "" || params[:password] == ""
+      redirect '/login?error=Fields cannot be left blank'
+    end
     @user = User.find_by_username(params[:username])
     if !@user
       redirect '/signup?error=Username not found'

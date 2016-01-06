@@ -9,10 +9,10 @@
   <nav>
     <% if logged_in? %>
 
-      <div><a href="/ensembles">  My Ensembles  </a></div>
-      <div><a href="/players">  All Players  </a></div>
-      <div><a href="/instruments">  All Instruments  </a></div>
-      <div><a href="/logout">  Log Out  </a></div>
+      <a href="/ensembles">  My Ensembles  </a><br>
+      <a href="/players">  All Players  </a><br>
+      <a href="/instruments">  All Instruments  </a><br>
+      <a href="/logout">  Log Out  </a><br>
       <p>Welcome, <%=current_user.username %></p>
 
     <% else %>

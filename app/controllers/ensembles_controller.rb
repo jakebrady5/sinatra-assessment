@@ -10,11 +10,15 @@ class EnsemblesController < ApplicationController
 
   get '/ensembles/new' do
     redirect_if_not_logged_in
+    catch_error
     erb :"ensembles/new_ensemble"
   end
 
   post '/ensembles' do
     redirect_if_not_logged_in
+    if params[:name] == "" || params[:city] == ""
+      redirect '/ensembles/new?error=Fields cannot be left blank'
+    end
     @ensemble = Ensemble.create(name: params[:name], city: params[:city])
     @ensemble.user_id = current_user.id
     @ensemble.save
@@ -23,6 +27,7 @@ class EnsemblesController < ApplicationController
 
   get '/ensembles/:id' do
     redirect_if_not_logged_in
+    catch_error
     @ensemble = Ensemble.find_by_id(params[:id])
     if @ensemble.user_id != current_user.id
       redirect '/ensembles?error=Requested ensemble is not under your user domain'
@@ -37,6 +42,7 @@ class EnsemblesController < ApplicationController
 
   get '/ensembles/:id/add_to' do
     redirect_if_not_logged_in
+    catch_error
     @ensemble = Ensemble.find_by_id(params[:id])
     @players = Player.all
     @players = @players.to_a.delete_if {|a| @ensemble.players.include?(a)}
@@ -80,6 +86,7 @@ class EnsemblesController < ApplicationController
 
   get '/ensembles/:id/edit' do
     redirect_if_not_logged_in
+    catch_error
     @ensemble = Ensemble.find_by_id(params[:id])
     if @ensemble.user_id == current_user.id
       erb :"/ensembles/edit"
@@ -90,6 +97,9 @@ class EnsemblesController < ApplicationController
 
   post '/ensembles/:id' do
     redirect_if_not_logged_in
+    if params[:name] == "" || params[:city] == ""
+      redirect "/ensembles/#{params[:id]}/edit?error=Fields cannot be left blank"
+    end
     @ensemble = Ensemble.find_by_id(params[:id])
     @ensemble.name = params[:name]
     @ensemble.city = params[:city]
